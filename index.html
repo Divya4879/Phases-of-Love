@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phases of Love – A Romantic Journey</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Love+Light&display=swap');
+
+        body {
+            font-family: 'Arial', sans-serif;
+            
+            overflow-x: hidden;
+            
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="pink"><path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>'), auto;
+        }
+
+        /* Scroll snap container */
+        .container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        /* Common section styles */
+        section {
+            scroll-snap-align: start;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 5rem;
+            color: #f3abab;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 10;
+            font-family: "Love Light", serif;
+            font-weight: bolder;
+            font-style: italic;
+        }
+
+        h1 {
+            font-size: 6rem;
+            margin-bottom: 0px;
+            text-align: center;
+            font-family: "Love Light", serif;
+            font-weight: bolder;
+            font-style: italic;
+        }
+
+        h1{
+            text-shadow: -2px -4px 0 #e69bf0, 2px -4px 0 #e69bf0, -2px 4px 0 #e69bf0, 2px 4px 0 #e69bf0; color: #8e2e80;
+        }
+  	
+
+        
+
+        .heart1 {
+            font-size: 5rem;
+            position: relative;
+            top:10vh;
+            float:left;
+            margin-top:0;
+            left:12%;
+        }        
+
+        #title{
+            background: linear-gradient(45deg, #614449, #654e57, #ffb6c1, #ffe4e1, #ffffff,pink,rgb(248, 165, 179),rgb(235, 74, 213),rgb(240, 37, 37),red,red);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        
+        /* Envelope flip card */
+        .heart-envelope {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 180px;
+            height: 180px;
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.3s ease;
+            
+        }
+
+        .heart-envelope:hover {
+            transform: scale(1.1);
+        }
+
+        .heart-envelope svg {
+            width: 100%;
+            height: 100%;
+            
+        }
+
+
+       
+
+        .letter-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            text-align: center;
+            color: #8e2e80;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .heart-envelope:hover .letter-content {
+            opacity: 1;
+        }
+
+        /* Sound control */
+        .sound-control {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            
+        }
+
+        .audio-button {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #f3abab;
+        }
+
+        #volume {
+            
+            width: 0px;
+            height: 0px;
+            background-color: #edb0f3; /* Track background color */
+            border-radius: 0px;
+            outline: none;
+            margin: 20px 0;
+            display:none
+          }
+
+        /* Sad Phase */
+        #sad {
+            
+            background: linear-gradient(135deg, #1c1c1c, #2b2b2b, #1c1c1c);
+            background-size: cover;
+            
+        }
+
+        /* Thunder flash overlay */
+    .thunder {
+        position: absolute;
+        top: 0; 
+        left: 0;
+        width: 100%; 
+        height: 100%;
+        background: white;
+        opacity: 0;
+        pointer-events: none;
+        animation: thunderFlash 8s infinite;
+        overflow: hidden;
+      }
+      @keyframes thunderFlash {
+        0%, 90%, 100% { opacity: 0; }
+        92% { opacity: 0.3; }
+        94% { opacity: 0.7; }
+        96% { opacity: 0.3; }
+      }
+  
+      /* Tears (rain of tears) */
+      .tears-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .tear {
+        position: absolute;
+        top: -10%;
+        width: 12px;
+        height: 20px;
+        background: rgba(121, 190, 213, 0.7); /* Light blue for tears */
+        border-radius: 50% 50% 40% 40%;
+        animation: fall 4s linear infinite;
+      }
+      @keyframes fall {
+        0% { transform: translateY(0) scaleX(1); opacity: 0.8; }
+        100% { transform: translateY(110vh) scaleX(0.5); opacity: 0.2; }
+      }
+      /* Create multiple tears with varying delays and positions */
+      .tear:nth-child(1)  { left: 10%; animation-delay: 0s; }
+      .tear:nth-child(2)  { left: 20%; animation-delay: 0.5s; }
+      .tear:nth-child(3)  { left: 30%; animation-delay: 1s; }
+      .tear:nth-child(4)  { left: 40%; animation-delay: 1.5s; }
+      .tear:nth-child(5)  { left: 50%; animation-delay: 2s; }
+      .tear:nth-child(6)  { left: 60%; animation-delay: 2.5s; }
+      .tear:nth-child(7)  { left: 70%; animation-delay: 3s; }
+      .tear:nth-child(8)  { left: 80%; animation-delay: 3.5s; }
+      .tear:nth-child(9)  { left: 90%; animation-delay: 4s; }
+      .tear:nth-child(10) { left: 15%; animation-delay: 4.5s; }
+      .tear:nth-child(11) { left: 25%; animation-delay: 5s; }
+      .tear:nth-child(12) { left: 35%; animation-delay: 5.5s; }
+      .tear:nth-child(13) { left: 45%; animation-delay: 6s; }
+      .tear:nth-child(14) { left: 55%; animation-delay: 6.5s; }
+      .tear:nth-child(15) { left: 65%; animation-delay: 7s; }
+  
+      /* Broken Heart Animation */
+      .broken-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: heartbeat 3s infinite;
+        font-size: 4rem;
+        transition: transform 0.3s ease;
+      }
+      @keyframes heartbeat {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+      }
+      
+        .broken-heart:hover {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        /* Neutral Phase */
+        #neutral {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #e3eeff, #f5fc79);
+            background-size: cover;
+            animation: gradientAnimation 20s ease infinite;
+            position: relative;
+        }
+
+        
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }   
+
+        .heartbeat {
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .heartbeat:hover {
+            animation: heartbeatHover 0.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeatHover {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* Crush Phase */
+        #crush {
+            background: linear-gradient(45deg, #f5aacf, #dd609a, #ce35b7, #ee6b97, rgb(227, 80, 80),rgb(215, 51, 51));
+            background-size: 400% 400%;
+            animation: gradientAnimation 5s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+
+        
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: float 4s ease-in infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0.9; }
+        }
+
+        #crush h2 {
+            transition: color 0.3s ease, font-size 0.3s ease;
+        }
+
+        #crush h2:hover {
+            color: #ff69b4;
+            font-size: 2.7rem;
+        }
+
+        /* Happy in Love Phase */
+        #happy {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+        }
+
+        .beating-heart {
+            font-size: 5rem;
+            animation: beat 0.7s ease-in-out infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .beating-heart:hover {
+            animation: beatHover 0.5s ease-in-out infinite;
+        }
+
+        #happy h2:hover ~ .beating-heart {
+            animation: beatHover 0.5s infinite ease-in-out;
+        }
+
+        @keyframes beatHover {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        
+
+        /* Content Phase */
+        #content {
+            background: radial-gradient(circle at top left, rgba(255, 230, 230, 0.3), transparent),
+            linear-gradient(135deg, #ffdee9, #b5fffc, #a8e6cf, #dcedc1, #fdfd96);
+          background-size: cover,cover;
+          animation: backgroundCycle 10s ease infinite;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: #444;
+          overflow: hidden;
+          }
+          
+          @keyframes backgroundCycle {
+            0% {
+              background-position: 0% 0%, 0% 0%;
+            }
+            33% {
+              background-position: 50% 50%, 50% 50%;
+            }
+            66% {
+              background-position: 100% 100%, 100% 100%;
+            }
+            100% {
+              background-position: 0% 0%, 0% 0%;
+            }
+          }
+          
+          /* Pattern overlay using a pseudo-element and an SVG pattern */
+          .peaceful-love::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="%23ffffff" fill-opacity="0.1"><circle cx="20" cy="20" r="2"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+            animation: patternMove 30s linear infinite;
+          }
+          
+          @keyframes patternMove {
+            from { transform: translate(0, 0); }
+            to { transform: translate(40px, 40px); }
+          }
+          
+          /* Large background heart (subtle and faded) */
+          .background-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(3);
+            font-size: 300px;
+            color: rgba(255, 112, 226, 0.516);
+            z-index: 0;
+            pointer-events: none;
+          }
+          
+          /* Central pulsing heart element symbolizing timeless love */
+          .heart {
+            position: relative;
+            font-size: 150px;
+            z-index: 1;
+            animation: heartbeat 3s ease-in-out infinite;
+          }
+          
+          @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+          }
+
+        .couple {
+            font-size: 4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .couple:hover {
+            transform: scale(1.1);
+        }
+
+
+        @keyframes wave-motion {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-10px); }
+            50% { transform: translateY(10px); }
+            75% { transform: translateY(-5px); }
+        }
+        
+        #content h2:hover {
+            display: inline-block;
+            animation: wave-motion 1.5s infinite ease-in-out;
+        }
+        
+
+        @keyframes crush {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.8) rotate(5deg); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes disintegrate {
+            0% { opacity: 1; }
+            100% { opacity: 0; transform: scale(0.5) rotate(10deg); }
+        }
+
+        @keyframes smiley {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1); }
+        }
+
+        h2 {
+            transition: transform 0.3s ease;
+        }
+
+        h2:hover {
+            transform: scale(1.1);
+        }
+
+        
+
+        #sad h2:hover {
+            animation: disintegrate 0.5s ease-in-out;
+        }
+
+        #neutral h2:hover {
+            transform: scale(1.1);
+        }
+
+        #crush h2:hover {
+            animation: smiley 0.5s ease-in-out;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            
+
+            .beating-heart, .broken-heart, .couple {
+                font-size: 3rem;
+            }
+
+            
+        }
+
+  
+
+
+            
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+
+
+        <section id="title">
+            
+            <div class="hearts-container">
+                <h1>The Phases of Love</h1>
+                <div class="heart1">💔</div>
+                <div class="heart1">❤️‍🩹</div>
+                <div class="heart1">💓</div>
+                <div class="heart1">💗</div>
+                <div class="heart1">💞</div>
+            </div>
+        </section>
+
+
+        <section id="sad">
+            <div class="tears-container">
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+                <div class="tear"></div>
+              </div>
+             
+              
+              <!-- Thunder flash overlay -->
+              <div class="thunder"></div>
+              <!-- Mood message -->
+              <h2>Heartbreak & Loneliness</h2>
+            <div class="broken-heart">💔</div>
+        </section>
+    
+            
+        <section id="neutral">
+            <h2>Single & Content</h2>
+            
+        </section>
+        <section id="crush">
+            <h2>Excitement & Butterflies</h2>
+            <div class="floating-hearts"></div>
+        </section>
+        <section id="happy">
+            <h2>Deep Connection</h2>
+            <div class="beating-heart">❤️</div>
+            
+        </section>
+        <section id="content">
+            <div class="background-heart">💗</div>
+            <h2>Peaceful Love</h2>
+            <div class="couple">👫</div>
+        </section>
+    </div>
+
+    
+    
+
+   
+
+    
+
+    <div class="heart-envelope">
+        <svg viewBox="0 0 32 29.6">
+            <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" fill="#f493ef"/>
+        </svg>
+        <div class="letter-content" id="letter-content"></div>
+    </div>
+    
+
+    <div class="sound-control">
+        <button class="audio-button" id="play-pause">🎵</button>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
+    <script>
+        // Progress indicator
+        const sections = document.querySelectorAll('section');
+        
+        const container = document.querySelector('.container');
+
+        
+        // Floating hearts
+        const floatingHeartsContainer = document.querySelector('.floating-hearts');
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            floatingHeartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 300);
+
+        // Audio setup
+        const audioElements = {
+            title: new Audio('audio/title.mp3'),
+            sad: new Audio('audio/sad-song.mp3'),
+            neutral: new Audio('audio/2.mp3'),
+            crush: new Audio('audio/3.mp3'),
+            happy: new Audio('audio/4.mp3'),
+            content: new Audio('audio/5.mp3')
+        };
+
+        let currentAudio = null;
+
+        const playPauseBtn = document.getElementById('play-pause');
+        const volumeSlider = document.getElementById('volume');
+
+        playPauseBtn.addEventListener('click', () => {
+            if (currentAudio) {
+                if (currentAudio.paused) {
+                    currentAudio.play();
+                } else {
+                    currentAudio.pause();
+                }
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            const volume = parseFloat(e.target.value);
+            Object.values(audioElements).forEach(audio => {
+                audio.volume = volume;
+            });
+        });
+
+        const heartEnvelope = document.querySelector(".heart-envelope");
+
+// Intersection Observer to detect when "title" section is visible
+
+
+// Observe the "title" section
+
+
+        // Intersection Observer for section visibility
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                    }
+                    if (entry.target.id === "title") {
+                        heartEnvelope.style.display = "none"; // Hide heart envelope
+                    } else {
+                        heartEnvelope.style.display = "block"; // Show heart envelope
+                    }
+                }
+                    currentAudio = audioElements[entry.target.id];
+                    currentAudio.play();
+                    updateLetterContent(entry.target.id);
+                
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => observer.observe(section));
+
+        const titleSection = document.getElementById("title");
+        if (titleSection) {
+            observer.observe(titleSection);
+        }
+
+        // Letter content
+        const letterContent = {
+            sad: "In the depths of sorrow, remember that healing takes time. Your heart will mend.",
+            neutral: "Embrace this moment of solitude. It's a time for self-discovery and growth.",
+            crush: "The flutter of new beginnings! Cherish these moments of excitement and possibility.",
+            happy: "True love has found you. Nurture it, cherish it, and let it bloom.",
+            content: "In the warmth of lasting love, find peace and joy in each shared moment."
+        };
+
+        function updateLetterContent(sectionId) {
+            const letterElement = document.getElementById('letter-content');
+            letterElement.textContent = letterContent[sectionId];
+        }
+
+        // Easter egg
+        const easterEgg = document.createElement('div');
+        easterEgg.textContent = '💝';
+        easterEgg.style.position = 'fixed';
+        easterEgg.style.bottom = '20px';
+        easterEgg.style.right = '20px';
+        easterEgg.style.fontSize = '2rem';
+        easterEgg.style.cursor = 'pointer';
+        easterEgg.style.opacity = '0';
+        easterEgg.style.transition = 'opacity 0.3s ease';
+        document.body.appendChild(easterEgg);
+
+        let easterEggVisible = false;
+        document.addEventListener('mousemove', (e) => {
+            if (e.clientX > window.innerWidth - 50 && e.clientY > window.innerHeight - 50) {
+                if (!easterEggVisible) {
+                    easterEgg.style.opacity = '1';
+                    easterEggVisible = true;
+                }
+            } else {
+                if (easterEggVisible) {
+                    easterEgg.style.opacity = '0';
+                    easterEggVisible = false;
+                }
+            }
+        });
+
+        easterEgg.addEventListener('click', () => {
+            alert('You\'ve successfully found the hidden treasure of love! ❤️💖💗💓💞🩷❣️');
+        });
+    </script>
+</body>
+</html>
+
