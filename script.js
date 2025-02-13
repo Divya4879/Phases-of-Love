@@ -28,61 +28,62 @@ const audioElements = {
 
 let currentAudio = null;
 
-const playPauseBtn = document.getElementById("play-pause");
-const volumeSlider = document.getElementById("volume");
+      const playPauseBtn = document.getElementById('play-pause');
+      const volumeSlider = document.getElementById('volume');
 
-playPauseBtn.addEventListener("click", () => {
-  if (currentAudio) {
-    if (currentAudio.paused) {
-      currentAudio.play();
-    } else {
-      currentAudio.pause();
-    }
-  }
-});
+      playPauseBtn.addEventListener('click', () => {
+          if (currentAudio) {
+              if (currentAudio.paused) {
+                  currentAudio.play();
+              } else {
+                  currentAudio.pause();
+              }
+          }
+      });
 
-volumeSlider.addEventListener("input", (e) => {
-  const volume = parseFloat(e.target.value);
-  Object.values(audioElements).forEach((audio) => {
-    audio.volume = volume;
-  });
-});
+      volumeSlider.addEventListener('input', (e) => {
+          const volume = parseFloat(e.target.value);
+          Object.values(audioElements).forEach(audio => {
+              audio.volume = volume;
+          });
+      });
 
+      // Intersection Observer for section visibility
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Pause and reset any currently playing audio
+            if (currentAudio) {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            }
+            
+            // Toggle heart envelope display based on section id
+            if (entry.target.id === "title") {
+              heartEnvelope.style.display = "none"; // Hide for title page
+            } else {
+              heartEnvelope.style.display = "block"; // Show for all other sections
+            }
+            
+            // Set and play new audio, then update letter content
+            currentAudio = audioElements[entry.target.id];
+            currentAudio.play();
+            updateLetterContent(entry.target.id);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      // Observe all sections and the title section (if separate)
+      sections.forEach(section => observer.observe(section));
+      const titleSection = document.getElementById("title");
+      if (titleSection) {
+        observer.observe(titleSection);
+      }
+      
 const heartEnvelope = document.querySelector(".heart-envelope");
 
-// Intersection Observer to detect when "title" section is visible
 
-// Observe the "title" section
-
-// Intersection Observer for section visibility
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        if (currentAudio) {
-          currentAudio.pause();
-          currentAudio.currentTime = 0;
-        }
-        if (entry.target.id === "title") {
-          heartEnvelope.style.display = "none"; // Hide heart envelope
-        } else {
-          heartEnvelope.style.display = "block"; // Show heart envelope
-        }
-      }
-      currentAudio = audioElements[entry.target.id];
-      currentAudio.play();
-      updateLetterContent(entry.target.id);
-    });
-  },
-  { threshold: 0.5 }
-);
-
-sections.forEach((section) => observer.observe(section));
-
-const titleSection = document.getElementById("title");
-if (titleSection) {
-  observer.observe(titleSection);
-}
 
 // Letter content
 const letterContent = {
