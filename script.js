@@ -131,6 +131,6 @@ document.addEventListener("mousemove", (e) => {
 
 easterEgg.addEventListener("click", () => {
   alert(
-    "You've successfully found the hidden treasure of love! ❤️💖💗💓💞🩷❣️"
+    "You've successfully found the hidden treasure of love! ❤️💖💗💓❣️"
   );
 });
