@@ -1,13 +1,11 @@
 # The Phases of Love 💕
 
-A beautiful interactive web experience that explores the different phases of love through visual and audio elements. This project uses HTML, CSS, and JavaScript to create an engaging journey through the emotional stages of love.
+A beautiful interactive web experience that explores the different phases of love through visual and audio elements. This project uses HTML, CSS, and JS to create an engaging journey through the emotional stages of love.
 
 ## 🌟 Features
 
-- Interactive heart animations representing different phases of love
 - Background music to enhance the emotional experience
 - Smooth transitions and hover effects
-- Responsive design for all device sizes
 - Gradient background with elegant typography
 
 ## 🚀 Live Demo
@@ -18,17 +16,14 @@ Experience the journey of love here: [Phases of Love](https://divya4879.github.i
 
 - HTML5
 - CSS3
-- JavaScript
-- Google Fonts
-- GitHub Pages (for hosting)
+- JS
 
 ## 🎨 Design Elements
 
 - Custom animated hearts
 - Elegant script typography
 - Soft pink gradient background
-- Musical elements for ambiance
-- Responsive layout
+- Musical elements for ambience
 
 ## 🛠️ Setup and Installation
 
