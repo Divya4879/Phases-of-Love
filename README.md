@@ -36,6 +36,49 @@ Experience the journey of love here: [Phases of Love](https://divya4879.github.i
    
    Open index.html in your preferred browser to view the project locally.
 
+## Accessibility (ARIA)
+
+The Phases of Love website implements several accessibility features to ensure an inclusive experience for all users:
+
+### Semantic HTML
+- Uses semantic HTML5 elements for proper document structure
+- Implements proper heading hierarchy with `<h1>` for the main title
+- Uses `<main>` and `<section>` elements to organize content meaningfully
+
+### ARIA Labels and Roles
+- All heart icons have descriptive `aria-label` attributes explaining their phase of love
+- Musical note icon includes `aria-label="Toggle background music"`
+- Interactive elements have appropriate ARIA roles
+- Progress through phases is communicated via `aria-current` attributes
+
+### Color and Contrast
+- Maintains WCAG 2.1 compliant color contrast ratios
+- Visual information is not conveyed through color alone
+- Text remains readable against the gradient background
+
+### Audio Accessibility
+- Background music includes audio controls
+- Audio can be paused/played using keyboard controls
+- Volume controls are keyboard accessible
+- Audio does not autoplay without user consent
+
+### Keyboard Navigation
+- All interactive elements are keyboard accessible
+- Focus indicators are clearly visible
+- Logical tab order is maintained throughout
+- Keyboard shortcuts are provided for main actions
+
+### Screen Reader Support
+- All images have descriptive alt text
+- Dynamic content changes are announced to screen readers
+- Progress through phases is properly communicated
+- Text alternatives for visual transitions
+
+### Responsive Design
+- Content scales appropriately at different zoom levels
+- Layout remains functional on various screen sizes
+- Touch targets are appropriately sized for mobile users
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
